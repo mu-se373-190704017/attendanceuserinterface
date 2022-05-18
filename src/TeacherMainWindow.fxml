@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane fx:id="FX_BorderPane_Teacher" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="TeacherMainWindow" prefHeight="400.0" prefWidth="600.0" stylesheets="@styles.css"
+            onKeyPressed="#handleKeyPressed">
+
+    <!-- Display's controls and buttons -->
+    <top>
+        <VBox>
+            <!-- Menu bar with options -->
+            <MenuBar>
+                <Menu text="File">
+                    <items>
+                        <MenuItem text="Add attendance" onAction="#handleInsertDialog"/>
+                        <SeparatorMenuItem />
+                        <MenuItem text="Exit program" onAction="#handleExit"/>
+                    </items>
+                </Menu>
+
+                <Menu text="Help">
+                    <items>
+                        <MenuItem text="Search" onAction="#handleSearch"/>
+                        <SeparatorMenuItem />
+                        <MenuItem text="Developer Ino" onAction="#handleShowDevInfo"/>
+                    </items>
+                </Menu>
+            </MenuBar>
+
+            <!-- Toolbar -->
+            <ToolBar>
+                <!-- Log in and Log Out Button -->
+                <Button fx:id="FX_B_Account" onAction="#handleLogOut" text="Log In">
+                    <tooltip>
+                        <Tooltip/>
+                    </tooltip>
+                </Button>
+
+                <!-- Search Button -->
+                <Button onAction="#handleSearch" text="Search">
+                    <tooltip>
+                        <Tooltip text="Search for student info"/>
+                    </tooltip>
+                </Button>
+
+                <!-- Search Button -->
+                <Button onAction="#handleTakeAttendance" text="Take Attendance">
+                    <tooltip>
+                        <Tooltip text="Take attendance"/>
+                    </tooltip>
+                </Button>
+
+                <!-- Toggle button to toggle between full list and defaulter list -->
+                <ToggleButton fx:id="FX_TB_FilterDefaulter" onAction="#handleFilter" text="Show Only Defaulters">
+                    <tooltip>
+                        <Tooltip text="Toggle defaulters"/>
+                    </tooltip>
+                </ToggleButton>
+            </ToolBar>
+
+            <!-- Displaying title of the app -->
+            <HBox alignment="CENTER" style="-fx-background-color: grey">
+                <Label text="Attendance System - Teacher" textFill="white">
+                    <font>
+                        <Font name="Arial bold" size="32"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Displays class information : Class Name, Total number of students and number of defaulters -->
+    <left>
+        <!--<VBox style="-fx-background-color: #999999">-->
+        <VBox fx:id="Background">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="20" />
+            </padding>
+
+            <!-- Displays the date -->
+            <Text fx:id="FX_T_Date" text="Date" fill = "white">
+                <font>
+                    <Font name="Arial bold" size="20"/>
+                </font>
+            </Text>
+
+            <!-- Label for class details -->
+            <Label text="Class details" fx:id="FXHeader"/>
+
+            <!-- Displays total student count -->
+            <HBox>
+                <Label text="Total Students : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_TotalStudents" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays total classes taken -->
+            <HBox>
+                <Label text="Total Classes taken : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_TotalLectureCount" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays total defaulter student count -->
+            <HBox>
+                <Label text="Total Defaulter Students : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_TotalDefaulterStudents" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman bold" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <Label text="Courses" fx:id="FXHeader"/>
+            <ComboBox fx:id="FX_CB_CourseList" minWidth="100"
+                      style="-fx-background-color: #aaaaaa">
+                <tooltip>
+                    <Tooltip text="The courses you take"/>
+                </tooltip>
+            </ComboBox>
+
+            <Label text="Days classes were taken" fx:id="FXHeader"/>
+            <ListView fx:id="FX_LV_ClassDayList" VBox.vgrow="ALWAYS" style="-fx-background-color: grey"/>
+        </VBox>
+    </left>
+
+    <!-- Displays a list of students in the class -->
+    <center>
+        <!--<VBox style="-fx-background-color: #606060">-->
+        <VBox fx:id="Background">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="20" />
+            </padding>
+
+            <!-- Displays student IDs -->
+            <Label text="Student ID" fx:id="FXHeader"/>
+            <ListView fx:id="FX_LV_StudentInfo" VBox.vgrow="ALWAYS" style="-fx-background-color: grey">
+                <tooltip>
+                    <Tooltip text="Present students"/>
+                </tooltip>
+            </ListView>
+        </VBox>
+    </center>
+
+    <!-- Displays student information : Name, Address, Contact no.-->
+    <right>
+        <!--<VBox style="-fx-background-color: #999999">-->
+        <VBox fx:id="Background">
+            <padding>
+                <Insets bottom="15" left="15" right="15" top="20" />
+            </padding>
+
+            <Label text="Student details" fx:id="FXHeader"/>
+
+            <!-- Displays student name -->
+            <HBox>
+                <Label text="Name : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_SName" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays student Address -->
+            <HBox>
+                <Label text="Address : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_SAddress" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays student contact number -->
+            <HBox>
+                <Label text="Contact Number : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_SContactNumber" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays student attendance count -->
+            <HBox>
+                <Label text="Attendance count : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_SAttendanceCount" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays student attendance percentage -->
+            <HBox>
+                <Label text="Attendance percentage : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_SAttendancePercentage" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays student attendance remark -->
+            <HBox>
+                <Label text="Remark : " fx:id="FXNormal"/>
+                <Text fx:id="FX_T_SAttendanceRemarks" style="-fx-background-color: white">
+                    <font>
+                        <Font name="Times New Roman" size="20"/>
+                    </font>
+                </Text>
+            </HBox>
+
+            <!-- Displays the days a student was present -->
+            <Label text="Days present : " fx:id="FXHeader"/>
+            <ListView fx:id="FX_LV_PresentDays" VBox.vgrow="ALWAYS" minWidth="400"
+                      style="-fx-background-color: grey"/>
+        </VBox>
+    </right>
+</BorderPane>
